@@ -10,7 +10,7 @@ terraform {
     resource_group_name  = "tfl-rg-backend-tfstate"
     storage_account_name = "tflsabets5q6d9ouy79"
     container_name       = "tfl-tfstate"
-    key                  = "backend.terraform.tfstate"
+    key                  = "backend.terraform.tfstate" #MÅ endres hver gang backend brukes
   }
 }
 
