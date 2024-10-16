@@ -39,5 +39,7 @@ jobs:
 
       - name: 'Terraform plan'
         id: plan
-        run: terraform plan
-        working-directory: ${{ env.WORKING_DIR }} 
+        run: terraform plan -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        working-directory: ${{ env.WORKING_DIR }}
+
+        
