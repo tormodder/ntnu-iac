@@ -30,7 +30,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      WORKING_DIR: ./
+      WORKING_DIR: ./web-demo
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -52,6 +52,7 @@ jobs:
         if: github.event.inputs.action_type == 'apply'
         id: apply
         run: terraform apply -auto-approve
+        working-directory: ${{ env.WORKING_DIR }}
 
       - name: 'Terraform destroy'
         if: github.event.inputs.action_type == 'destroy'
