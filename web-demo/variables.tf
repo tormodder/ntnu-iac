@@ -19,7 +19,7 @@ variable "location" {
 variable "sa_tfl_name" {
   type        = string
   description = "Name of the Storage Account"
-  default     = "sa_tfl_web"
+  default     = "satflweb"
 }
 
 variable "source_content" {
