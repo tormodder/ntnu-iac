@@ -58,3 +58,4 @@ jobs:
           else 
             terraform apply -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
           fi
+        working-directory: ${{ env.WORKING_DIR }}   
