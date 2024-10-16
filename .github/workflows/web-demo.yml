@@ -9,7 +9,13 @@ on:
     paths:
       - 'web-demo/**'
 
-
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      action_type:
+        description: "What action should be performed? (apply/destroy)"
+        required: true
+        default: "apply"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,7 +30,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      WORKING_DIR: ./web-demo/
+      WORKING_DIR: ./web-demo
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -42,4 +48,13 @@ jobs:
         run: terraform plan -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         working-directory: ${{ env.WORKING_DIR }}
 
-        
+      - name: 'Terraform apply'
+        if: github.event.inputs.action_type == 'apply'
+        id: apply
+        run: terraform apply -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: 'Terraform destroy'
+        if: github.event.inputs.action_type == 'destroy'
+        run: terraform destroy -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        working-directory: ${{ env.WORKING_DIR }}
