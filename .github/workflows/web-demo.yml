@@ -48,13 +48,13 @@ jobs:
         run: terraform plan -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: 'Terraform apply'
-        if: github.event.inputs.action_type == 'apply'
-        id: apply
-        run: terraform apply -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: 'Terraform destroy'
-        if: github.event.inputs.action_type == 'destroy'
-        run: terraform destroy -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-        working-directory: ${{ env.WORKING_DIR }}
+      - name: 'Check last commit message'
+        id: commit
+        run: echo"::set-output name=message::$(git log --format=%B -n 1)"
+      - name: "Conditionally run terraform action"
+        run: |
+          if [[ "{{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+            terraform destroy -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          else 
+            terraform apply -auto-approve -var "subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          fi
