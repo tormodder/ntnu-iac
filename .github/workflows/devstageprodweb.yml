@@ -86,7 +86,7 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: Test prod
-      run: curl $(terraform output -raw primary_web_endpoint=
+      run: curl $(terraform output -raw primary_web_endpoint)
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: Get Web Endpoint
