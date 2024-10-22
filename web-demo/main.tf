@@ -14,7 +14,7 @@ resource "random_string" "random_string" {
 
 # Create Resource Group
 resource "azurerm_resource_group" "tfl_rg_web" {
-  name     = var.rg_name
+  name     = "${var.rg_name}-${terraform.workspace}"
   location = var.location
 }
 
