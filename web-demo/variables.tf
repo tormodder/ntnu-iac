@@ -7,7 +7,7 @@ variable "subscription_id" {
 variable "rg_name" {
   type        = string
   description = "Name of Resource Group"
-  default     = "rg-tfl-web"
+  default     = "rg-tfl-web-${terraform.workspace}"
 }
 
 variable "location" {
