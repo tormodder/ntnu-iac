@@ -8,8 +8,8 @@ terraform {
 
   backend "azurerm" {
     resource_group_name  = "tfl-rg-backend-tfstate"
-    storage_account_name = "tflsabets5q6d9ouy79"
-    container_name       = "tfl-tfstate"
+    storage_account_name = "tflsabetswubl97ofwy"
+    container_name       = "tflscbets"
     key                  = "web-demo.terraform.tfstate" #MÅ endres hver gang backend brukes
   }
 }
