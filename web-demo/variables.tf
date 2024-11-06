@@ -25,7 +25,7 @@ variable "sa_tfl_name" {
 variable "source_content" {
   type        = string
   description = "Source content of the index.html file"
-  default     = "<h1>Made with Terraform - CI/CD pipeline - Update del 2</h1>"
+  default     = "<h1>Made with Terraform - CI/CD pipeline - Update del 3</h1>"
 }
 
 variable "index_document" {
