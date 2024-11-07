@@ -7,7 +7,7 @@ on:
     branches-ignore:
       - 'main'
     paths:
-      - 'ntnu-iac/demo-ifra/**'
+      - 'demo-ifra/**'
 
   workflow_dispatch:
 
