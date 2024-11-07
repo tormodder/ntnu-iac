@@ -17,6 +17,11 @@ variable "location" {
   description = "Azure region to deploy resources"
 }
 
+variable "vm_password" {
+  type = string
+  default = "Test12345"
+}
+
 
 ##########################################
 ###### Variable for the keyvault.tf ######

@@ -22,9 +22,9 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                            = "${var.vm_name}-${var.base_name}"
   resource_group_name             = azurerm_resource_group.rg-tfl-infra.name
   location                        = azurerm_resource_group.rg-tfl-infra.location
-  size                            = "Standard_F2"
+  size                            = "Standard_B1s"
   admin_username                  = var.vm_username
-  admin_password                  = azurerm_key_vault_secret.vm_password.value
+  admin_password                  = var.vm_password
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
