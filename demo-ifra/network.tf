@@ -23,17 +23,3 @@ resource "azurerm_subnet_network_security_group_association" "nsg_snet_associati
   subnet_id                 = azurerm_subnet.tfl-subnet.id
   network_security_group_id = azurerm_network_security_group.tfl-nsg.id
 }
-
-resource "azurerm_network_security_rule" "ssh_inbound_myIP" {
-  name                        = "SSHInboundMyIP"
-  priority                    = 101
-  direction                   = "Inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "22"
-  destination_port_range      = "22"
-  source_address_prefix       = "123.145.167.189"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.rg-tfl-infra.name
-  network_security_group_name = azurerm_network_security_group.tfl-nsg.name
-}
