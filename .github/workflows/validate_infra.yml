@@ -7,7 +7,7 @@ on:
     branches-ignore:
       - 'main'
     paths:
-      - 'course materials/module07/demo-infra/**'
+      - 'ntnu-iac/demo-ifra/**'
 
 
 
