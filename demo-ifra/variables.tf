@@ -19,7 +19,7 @@ variable "location" {
 
 variable "vm_password" {
   type = string
-  default = "Test12375"
+  default = "Test12375abc"
   description = "this is the description"
 }
 
